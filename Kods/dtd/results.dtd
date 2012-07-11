@@ -1,0 +1,27 @@
+<!ELEMENT transliterations (group+)>
+<!-- Usualy 6 groups. -->
+
+<!ELEMENT group (variant*)>
+<!ATTLIST group
+	opt_rules (yes|no) #REQUIRED
+	dict (yes|no) #REQUIRED
+	guess (yes|no) #REQUIRED>
+
+<!ELEMENT variant (estimate?, lemma*)>
+<!ATTLIST variant
+	wordform CDATA #REQUIRED>
+
+<!ELEMENT estimate (#PCDATA)>
+<!-- Usualy real number, less or equal 0. -->
+
+<!ELEMENT lemma (dict+)>
+<!ATTLIST lemma
+	form CDATA #REQUIRED>
+
+<!ELEMENT dict (desc+)>
+<!-- Contains information derived from *.conf files from /res/dict/ folder. -->
+<!ELEMENT desc (#PCDATA)>
+<!ATTLIST desc
+	attr CDATA #REQUIRED>
+
+

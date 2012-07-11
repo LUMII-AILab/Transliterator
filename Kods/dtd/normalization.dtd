@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT normalization (transliterations)>
+<!ATTLIST normalization
+	rule_set (core|fraktur|frakturDouble|latin) #REQUIRED
+	apply_opt_rules (true|false) #REQUIRED
+>
+
+<!ELEMENT transliterations (group+)>
+
+<!-- Varianti ir sadalīti 6 grupās -->
+<!-- Grupas ir sakārtotas pēc uzticamības -->
+<!-- Grupas ietvaros varianti ir sakārtoti pēc N-grammu ticamības -->
+<!-- NB: uzticamākā grupa negarantē ticamākos variantus -->
+<!ELEMENT group (variant*)>
+<!-- opt_rules: vai ir izmantoti neobligātie ('fuzzy') likumi? -->
+<!-- dict: vai varianta pamatforma ('lemma') ir atrasta kādā vārdnīcā? -->
+<!-- guess: vai pamatformas noteikšanai tika lietota minēšanas funkcija? -->
+<!ATTLIST group
+	opt_rules (yes|no) #REQUIRED
+	dict (yes|no) #REQUIRED
+	guess (yes|no) #REQUIRED
+>
+
+<!-- Vārdforma mūsdienu ortogrāfijā -->
+<!ELEMENT variant (estimate?, lemma*)>
+<!ATTLIST variant
+	wordform CDATA #REQUIRED
+>
+
+<!-- Reāls skaitlis, mazāks par vai vienāds ar 0 -->
+<!-- Jo lielāks skaitlis, jo ticamāks variants -->
+<!ELEMENT estimate (#PCDATA)>
+
+<!-- Pamatforma -->
+<!ELEMENT lemma (dict+)>
+<!ATTLIST lemma
+	form CDATA #REQUIRED
+>
+
+<!ELEMENT dict (desc+)>
+
+<!-- Vārdnīcas ID un tīmekļa servisa izsaukums (ja dictID='SV') -->
+<!ELEMENT desc (#PCDATA)>
+<!ATTLIST desc
+	attr (dictID|entryURL) #REQUIRED
+>

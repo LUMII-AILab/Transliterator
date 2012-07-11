@@ -1,0 +1,25 @@
+<!ELEMENT rules ((exact, fuzzy) | exact | fuzzy)>
+
+<!ELEMENT exact (r+)>
+<!ELEMENT fuzzy (r+)>
+<!-- At least one set must contain at least one rule, other can be empty. -->
+
+<!ELEMENT r (replace+)>
+<!-- If r element describes rule with only one replacment, "replace" tags can
+	 be ommited. r elements under exact must specify exactly one replacement.
+	 -->
+<!ATTLIST r
+	target CDATA #REQUIRED
+	position (begin|end|exact|all) "all"
+	sensitive (1|0) "0"
+	replace CDATA #IMPLIED>
+
+<!ELEMENT replace (#PCDATA)>
+<!ATTLIST replace
+	position (begin|end|exact|all) "all"
+	sensitive (1|0) "0">
+<!-- If both r and replace provide value for some atribute, then value from
+	 replace is used. -->
+
+
+
