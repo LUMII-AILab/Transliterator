@@ -43,13 +43,13 @@ public class VariantEvaluator
 	/**
 	 * Constructor.
 	 * @param beginTag	Tag denoting begining of the word in the N-gram file.
-	 *					<code><s></code> is used, if <code>null</code> or empty
-	 *					string provided.
+	 *					<code>&lt;s></code> is used, if <code>null</code> or
+	 *					empty string provided.
 	 * @param endTag	Tag denoting end of the word in the N-gram file.
-	 *					<code><\s></code> is used, if <code>null</code> or empty
-	 *					string provided.
+	 *					<code>&lt;\s></code> is used, if <code>null</code> or
+	 *					empty string provided.
 	 * @param unknownTag	Tag denoting out-of-dictionary character in the
-	 *						N-gram file. <code><unk></code> is used, if
+	 *						N-gram file. <code>&lt;unk></code> is used, if
 	 *						<code>null</code> or empty string provided.
 	 * @param vocabFile	Path to vocabulary file - one character per line. If
 	 *					length of line is more than 1, and line is not equal to
