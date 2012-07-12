@@ -1,4 +1,5 @@
 cd src
 javadoc -d docs -subpackages lv
-move docs ..\javadocs
+cd ..
+move src\docs javadocs
 pause

@@ -151,6 +151,8 @@ public class Transliterator
 	/**
 	 * Complete processing of one word: transliteration, and, if asked, fuzzy
 	 * transliteration, and checking against dictionary.
+	 * In case of invalid input data (no token or invalid group), returns
+	 * <code>null<code>.
 	 */
 	public ResultData processWord(String token, String group, boolean useFuzzy)
 	{
