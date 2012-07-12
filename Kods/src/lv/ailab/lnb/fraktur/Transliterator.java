@@ -82,7 +82,19 @@ public class Transliterator
 	throws Exception
 	{
 		if (itIsMe == null)
-			itIsMe = new Transliterator(PATH_FILE);
+			itIsMe = new Transliterator(PATH_FILE, null);
+		return itIsMe;
+	}
+	
+	/**
+	 * Get singleton instance of this class. If transliterator is already
+	 * initialized with different morphology, reinitialization is done.
+	 */
+	public static Transliterator getTransliterator(Analyzer anal)
+	throws Exception
+	{
+		if (itIsMe == null || !itIsMe.morph.equals(anal))
+			itIsMe = new Transliterator(PATH_FILE, anal);
 		return itIsMe;
 	}
 	
@@ -92,7 +104,16 @@ public class Transliterator
 	public static void reloadTransliterator()
 	throws Exception
 	{
-		itIsMe = new Transliterator(PATH_FILE);
+		itIsMe = new Transliterator(PATH_FILE, null);
+	}
+	
+	/**
+	 * Reload Transliterator. You should call this if PATH_FILE have changed.
+	 */
+	public static void reloadTransliterator(Analyzer anal)
+	throws Exception
+	{
+		itIsMe = new Transliterator(PATH_FILE, anal);
 	}
 	
 	/**
@@ -255,8 +276,10 @@ public class Transliterator
 	
 	/**
 	 * Constructor.
+	 * If analyzer == null, then morphology is initialized from lexicon given in
+	 * path file.
 	 */
-	private Transliterator(String pathFile)
+	private Transliterator(String pathFile, Analyzer analyzer)
 	throws Exception
 	{
 		paths = new Properties();
@@ -271,18 +294,26 @@ public class Transliterator
 		initDict(new File(paths.getProperty("dictDir")));
 		
 		// Set up morphoanalyzer.
-		morph = new Analyzer(paths.getProperty("morphLex"));
-		morph.enableDiminutive = true;
-		morph.enablePrefixes = true;
-		morph.enableVocative = true;
-		morph.enableGuessing = true;
-		morph.enableAllGuesses = true;
+		if (analyzer == null)
+		{
+			morph = new Analyzer(paths.getProperty("morphLex"));
+			morph.enableDiminutive = true;
+			morph.enablePrefixes = true;
+			morph.enableVocative = true;
+			morph.enableGuessing = true;
+			morph.enableAllGuesses = true;
+		} else
+		{
+			morph = analyzer;
+		}
 		
 		// N-grams.
 		initNGramEval();
 		if (nGrams != null) comparator = new VariantComparator(nGrams);
 		else comparator = null;
 	}
+	
+	
 	
 	/**
 	 * Reads in all transliterarion rules.
