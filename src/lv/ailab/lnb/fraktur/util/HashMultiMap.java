@@ -15,7 +15,7 @@ public class HashMultiMap <K, V> extends HashMap <K, LinkedHashSet<V>>
 	/**
 	 * Add element to multimap.
 	 */
-	public void put (K key, V value)
+	public V putOne (K key, V value)
 	{
 		LinkedHashSet<V> mapping = this.get(key);
 		if (mapping != null)
@@ -28,6 +28,7 @@ public class HashMultiMap <K, V> extends HashMap <K, LinkedHashSet<V>>
 			mapping.add(value);
 			super.put(key, mapping);
 		}
+		return value;
 	}
 	
 	/**

@@ -200,18 +200,18 @@ public class Rules
 				{
 					String key = tmpRes.first;
 					Tuple<String, Pos> value = firstTwo(tmpRepl);
-					fuzzySense.put(key, value);
+					fuzzySense.putOne(key, value);
 				}
 				else
 				{
 					String key = tmpRes.first.toLowerCase();
 					Tuple<String, Pos> value = new Tuple<String, Pos>(
 							tmpRepl.first.toLowerCase(), tmpRepl.second);
-					fuzzy.put(key, value);
+					fuzzy.putOne(key, value);
 				}
 				
 			}
-			//fuzzy.put(tmpRes.first, tmpRes.second);
+			//fuzzy.putOne(tmpRes.first, tmpRes.second);
 		}
 
 	}
