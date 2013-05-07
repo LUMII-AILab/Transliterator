@@ -53,17 +53,17 @@ public class Engine
 			
 			// NOTE
 			// In case of bad performance this part can be optimized by using
-			// sufix trees instead of full search.
+			// suffix trees instead of full search.
 			
-			// Go through all sufixes of token current substring.
+			// Go through all suffixes of token current substring.
 			for (int begin = pos; begin >= 0; begin--)
 			{
 				// Currently analyzed token fragment.
 				String suffix = token.substring(begin, pos + 1);
-				// Currently analyzed token fragment lowercased.
+				// Currently analyzed token fragment lower-cased.
 				String suffixLC = tokenLC.substring(begin, pos + 1);
 				
-				// Apply exact case insensetive rules.
+				// Apply exact case insensitive rules.
 				if (rules.exact.containsKey(suffixLC))
 				{
 					Tuple<String, Rules.Pos> repl = rules.exact.get(suffixLC);
@@ -80,7 +80,7 @@ public class Engine
 					}
 				}
 				
-				// Apply exact case sensetive rules.
+				// Apply exact case sensitive rules.
 				if (rules.exactSense.containsKey(suffix))
 				{
 					Tuple<String, Rules.Pos> repl = rules.exact.get(suffix);
@@ -94,7 +94,7 @@ public class Engine
 					}
 				}
 				
-				// Apply fuzzy case insensetive rules.
+				// Apply fuzzy case insensitive rules.
 				if (fuzzy && rules.fuzzy.containsKey(suffixLC))
 				{
 					for (Tuple<String, Rules.Pos> repl : rules.fuzzy.get(suffixLC))
@@ -110,7 +110,7 @@ public class Engine
 					}
 				}
 				
-				// Apply fuzzy case sensetive rules.
+				// Apply fuzzy case sensitive rules.
 				if(fuzzy && rules.fuzzySense.containsKey(suffix))
 				{
 					for (Tuple<String, Rules.Pos> repl : rules.fuzzySense.get(suffix))
@@ -155,8 +155,8 @@ public class Engine
 	}
 	
 	/**
-	 * Capitalize target similary as pattern is capitalized. Options ALL CAPS or
-	 * First cap considered only.
+	 * Capitalize target similarly as pattern is capitalized. Options ALL CAPS
+	 * or First cap considered only.
 	 */
 	private static String capitalize(String target, String pattern)
 	{

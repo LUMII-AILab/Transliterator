@@ -12,12 +12,12 @@ import java.util.HashSet;
 /**
  * This class provides CLI for Transliterator for demonstration purposes.
  *
- * Usage: either provaiding arguments to <code>main()</code> method, or typing
+ * Usage: either providing arguments to <code>main()</code> method, or typing
  * arguments when interface prompts for it.
  *
  * Arguments must be in form: token -flag1 -flag2 -flag3 -flag4
  *
- * Avialable flags:
+ * Available flags:
  * -F           use fuzzy and exact transliteration rules;
  * -E           use exact transliteration rules;
  * -group-name  name of the rule group;
@@ -54,7 +54,7 @@ public class TransliteratorCLI
 	
 	/**
 	 * Entry point and test place. Use this, if you want to test transliterator
-	 * libray without providing user interface.
+	 * library without providing user interface.
 	 *
 	 * If started with no arguments, run CLI repeatedly prompting for arguments,
 	 * else process arguments the same way CLI would do it and halt.
@@ -65,7 +65,7 @@ public class TransliteratorCLI
 		System.out.println("Test interface for \"Periodika II\" transliterator.");
 		System.out.println("AILab, IMCS, UL, 2011-2012.\r\n");
 
-		// Init the transliterator
+		// Initialize the transliterator.
 		TransliteratorCLI cli = new TransliteratorCLI();
 
 		System.out.println(
@@ -77,7 +77,7 @@ public class TransliteratorCLI
 	}
 	
 	/**
-	 * One-liner style interface: called if main() have recieved arguments.
+	 * One-liner style interface: called if main() have received arguments.
 	 */
 	private void oneLineInterface(String[] args)
 	{
@@ -95,7 +95,7 @@ public class TransliteratorCLI
 	}
 	
 	/**
-	 * Interactive interface: prints help and recieves input from user.
+	 * Interactive interface: prints help and receives input from user.
 	 */
 	private void interactiveInterface()
 	throws IOException
@@ -129,7 +129,7 @@ public class TransliteratorCLI
 			
 			String[] splitToken = token.split(" -");
 			
-			// Set default values to cancel anything prevously set.
+			// Set default values to cancel anything previously set.
 			setDefaultSettings();
 			if (splitToken.length > 1)
 			{
@@ -147,7 +147,7 @@ public class TransliteratorCLI
 	}
 	
 	/**
-	 * Process input as file or token, depending on current senttings.
+	 * Process input as file or token, depending on current settings.
 	 */
 	private void doGreatStuff(String input)
 	{
@@ -193,13 +193,13 @@ public class TransliteratorCLI
 	 * <code>processFileOrder()</code>,
 	 * <code>processFileWithAns()</code>.
 	 *
-	 * Input file format is deternined by checking if first line contains tab.
+	 * Input file format is determined by checking if first line contains tab.
 	 */
 	private void processFile(
 		String inpath, String outpath, String group)
 	throws IOException
 	{
-		// Init I/O flows.
+		// Initialize I/O flows.
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 			new FileInputStream(inpath), "UTF8"));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
@@ -230,34 +230,34 @@ public class TransliteratorCLI
 	 * Input file must be:
 	 *	*) one token per line.
 	 *
-	 * Output file has following tab-seperated columns:
+	 * Output file has following tab-separated columns:
 	 *	1)  token itself;
-	 *	2)  space seperated dictionary confirmed transliterations formed without
-	 *		morhological guessing with exact rules only;
+	 *	2)  space separated dictionary confirmed transliterations formed
+	 *		without morphological guessing with exact rules only;
 	 *	3)  number of variants in column #2;
-	 *	4)  space seperated dictionary confirmed transliterations formed with
-	 *		exact rules only and with morhological guessing;
+	 *	4)  space separated dictionary confirmed transliterations formed with
+	 *		exact rules only and with morphological guessing;
 	 *	5)  number of variants in column #4;
-	 *	6)  space seperated dictionary confirmed transliterations formed with
-	 *		all rules without morhological guessing (transliterations from #2,
+	 *	6)  space separated dictionary confirmed transliterations formed with
+	 *		all rules without morphological guessing (transliterations from #2,
 	 *		#4 are not included 2nd time);
 	 *	7)  number of variants in column #6;
-	 *	8)	space seperated dictionary confirmed transliterations formed with
-	 *		all rules and with morhological guessing (transliterations from #2,
-	 *		#4 are not included 2nd time);
+	 *	8)	space separated dictionary confirmed transliterations formed with
+	 *		all rules and with morphological guessing (transliterations from
+	 *		#2, #4 are not included 2nd time);
 	 *	9)  number of variants in column #8;
-	 *	10) space seperated unconfirmed transliterations formed with exact rules
+	 *	10) space separated unconfirmed transliterations formed with exact rules
 	 *		only;
 	 *	11) number of variants in column #10;
-	 *	12) space seperated unconfirmed transliterations formed with all rules
-	 *		(transliterations from the previos columns are not included 2nd
+	 *	12) space separated unconfirmed transliterations formed with all rules
+	 *		(transliterations from the previous columns are not included 2nd
 	 *		time);
 	 *	13) number of variants in column #12.
 	 *
 	 * @param in		input stream according to the described format.
 	 * @param out		output stream according to described format.
 	 * @param firstLine	first line of the input stream, if it has been read
-	 *					prevously.
+	 *					previously.
 	 */
 	private void processFileBasic(
 		BufferedReader in, BufferedWriter out, String firstLine, String group)
@@ -370,20 +370,20 @@ public class TransliteratorCLI
 	 * orders tranliteration variants accordingly to probabilities calculated
 	 * from N-grams.
 	 * To use this function, <code>Transliterator</code> must have N-gram tools
-	 * iniciated.
+	 * initiated.
 	 *
 	 * Input file must be:
 	 *	*) one token per line.
 	 *
-	 * Output file has following tab-seperated columns:
+	 * Output file has following tab-separated columns:
 	 *	1)  	token itself;
-	 *	2..n)	variants ordered by their estimated likelyhood (most likely
+	 *	2..n)	variants ordered by their estimated likelihood (most likely
 	 *			first).
 	 *
 	 * @param in		input stream according to the described format.
 	 * @param out		output stream according to described format.
 	 * @param firstLine	first line of the input stream, if it has been read
-	 *					prevously.
+	 *					previously.
 	 */
 	private void processFileOrder(
 		BufferedReader in, BufferedWriter out, String firstLine, String group)
@@ -454,7 +454,7 @@ public class TransliteratorCLI
 	 * Input file must be:
 	 *	*) token + tab + correct transliteration per line.
 	 *
-	 * Output file has following tab-seperated columns:
+	 * Output file has following tab-separated columns:
 	 *	1)	token itself;
 	 *	2)	in which group of transliterations the correct answer was found
 	 *		(admissible values: DICT_EXACT, DICT_FUZZY, NO_DICT_EXACT,
@@ -463,20 +463,20 @@ public class TransliteratorCLI
 	 *		correct answer);
 	 *	3)	this number indicates which was the correct transliteration in the
 	 *		list of all transliteration variants ordered by estimated
-	 *		likelyhood.
+	 *		likelihood.
 	 *	4)	the same as #3, but position is given for the the list containing
 	 *		the one subset of transliteration variants that contains the correct
 	 *		answer.
 	 *	5)	answer given in input file;
 	 *	6)	number of dictionary confirmed transliterations formed without
-	 *		morhological guessing with exact rules only;
+	 *		morphological guessing with exact rules only;
 	 *	7)	number of dictionary confirmed transliterations formed with exact
-	 *		rules only and with morhological guessing;
+	 *		rules only and with morphological guessing;
 	 *	8)	number of dictionary confirmed transliterations formed with all
-	 *		rules without morhological guessing (transliterations from #6, #7
+	 *		rules without morphological guessing (transliterations from #6, #7
 	 *		are not included 2nd time);
 	 *	9)	number of dictionary confirmed transliterations formed with all
-	 *		rules and with morhological guessing (transliterations from #6, #7
+	 *		rules and with morphological guessing (transliterations from #6, #7
 	 *		are not included 2nd time);
 	 * 	10)	number of unconfirmed transliterations formed with exact rules only;
 	 *	11)	number of unconfirmed transliterations formed with all rules
@@ -485,7 +485,7 @@ public class TransliteratorCLI
 	 * @param in		input stream according to the described format.
 	 * @param out		output stream according to described format.
 	 * @param firstLine	first line of the input stream, if it has been read
-	 *					prevously.
+	 *					previously.
 	 */
 	private void processFileWithAns(
 		BufferedReader in, BufferedWriter out, String firstLine, String group)
@@ -629,7 +629,7 @@ public class TransliteratorCLI
 			counter++;
 		}
 	}	
-	//=== Supporting functions for mor convinient CLI work. ====================
+	//=== Supporting functions for more convenient CLI work. ==================
 	
 	/**
 	 * Set default processing settings.
@@ -643,7 +643,7 @@ public class TransliteratorCLI
 	}
 	
 	/**
-	 * Parse CLI flags and set settings. If parse error occours, default
+	 * Parse CLI flags and set settings. If parse error occurs, default
 	 * settings are set.
 	 */
 	private boolean parseFlags(HashSet<String> flags)

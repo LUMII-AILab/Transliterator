@@ -22,7 +22,7 @@ public class WordList
 	private HashMap<String, Properties> id2meta;
 	
 	/**
-	 * To maintain easy deneration of unical IDs, last ID is stored.
+	 * To maintain easy generation of unique IDs, last ID is stored.
 	 */
 	private int lastId;
 	

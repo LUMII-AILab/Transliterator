@@ -41,12 +41,12 @@ public class Transliterator
 	private static Transliterator itIsMe = null;
 	
 	/**
-	 * Path to config file. 
+	 * Path to configuration file. 
 	 */
 	public static String PATH_FILE = "path.conf";
 	
 	/**
-	 * Paths to external recources. Hashkeys are hardcoded.
+	 * Paths to external resources. Hash keys are hard-coded.
 	 */
 	private Properties paths;
 	
@@ -141,7 +141,7 @@ public class Transliterator
 	}
 	
 	/**
-	 * Returns string used as key to dictionary webservice.
+	 * Returns string used as key to dictionary web-service.
 	 */
 	public String getEntryUrlKey()
 	{
@@ -170,7 +170,7 @@ public class Transliterator
 			// Transliteration variant;
 			String var = e.getKey();
 			
-			// Do morphoanalysis.
+			// Do morpho-analysis.
 			ArrayList<Wordform> analRes = morph.analyze(var).wordforms;
 			
 			// Lemmas with no guessing used.
@@ -295,7 +295,7 @@ public class Transliterator
 		dict = new WordList();
 		initDict(new File(paths.getProperty("dictDir")));
 		
-		// Set up morphoanalyzer.
+		// Set up morpho-analyzer.
 		if (analyzer == null)
 		{
 			morph = new Analyzer(paths.getProperty("morphLex"));
@@ -386,6 +386,4 @@ public class Transliterator
 		}		
 	}
 	
-
-
 }

@@ -20,12 +20,12 @@ import org.xml.sax.SAXException;
 public class Rules
 {
 	/**
-	 * Constants representing in which positions given rulle can be applied.
+	 * Constants representing in which positions given rule can be applied.
 	 */
 	public static enum Pos
 	{
 		/**
-		 * Begining of the token.
+		 * Beginning of the token.
 		 */
 		BEGIN,
 		/**
@@ -56,22 +56,22 @@ public class Rules
 		}
 	}
 	/**
-	 * Unambiguous case insensitive transiteration rules.
+	 * Unambiguous case insensitive transliteration rules.
 	 */
 	public HashMap<String, Tuple<String, Pos>> exact;
 	
 	/**
-	 * Unambiguous case sensitive transiteration rules.
+	 * Unambiguous case sensitive transliteration rules.
 	 */
 	public HashMap<String, Tuple<String, Pos>> exactSense;
 	
 	
 	/**
-	 * Ambiguous case insensitive transiteration rules.
+	 * Ambiguous case insensitive transliteration rules.
 	 */
 	public HashMultiMap<String, Tuple<String, Pos>> fuzzy;
 	/**
-	 * Ambiguous case sensitive transiteration rules.
+	 * Ambiguous case sensitive transliteration rules.
 	 */
 	public HashMultiMap<String, Tuple<String, Pos>> fuzzySense;
 	
@@ -114,7 +114,7 @@ public class Rules
 	}
 	
 	
-	/**
+	/*
 	 * Returns unambiguous transliteration rules associated with given string.
 	 */
 	/*public String getExactReplacement (String what)
@@ -122,7 +122,7 @@ public class Rules
 		return exact.get(what);
 	}//*/
 	
-	/**
+	/*
 	 * Returns ambiguous transliteration rules associated with given string.
 	 */
 	/*public ArrayList<String> getFuzzyReplacement (String what)
@@ -130,7 +130,7 @@ public class Rules
 		return fuzzy.get(what);
 	}//*/
 	
-	/**
+	/*
 	 * Returns all transliteration rules associated with given string.
 	 */
 	/*public ArrayList<String> getAllReplacement (String what)
@@ -340,7 +340,7 @@ public class Rules
 			}
 		}
 		
-		// Happy ending, everything is colected.
+		// Happy ending, everything is collected.
 		return new Tuple<String,ArrayList<Triplet<String, Pos, Boolean>>>(
 			target, replacements);
 	}

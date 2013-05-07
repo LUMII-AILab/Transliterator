@@ -12,10 +12,10 @@ import java.util.Map;
 class ProcessingData
 {
 	/**
-	 * Look-up table for dynamic programm. lookUpTable[i] contains
-	 * transliteration variants when word is transliterated from begining to
+	 * Look-up table for dynamic program. lookUpTable[i] contains
+	 * transliteration variants when word is transliterated from beginning to
 	 * i-th character.
-	 * Boolean variables denote, wheather fuzzy rules are needed to accomplish
+	 * Boolean variables denote, whether fuzzy rules are needed to accomplish
 	 * such transformation. 
 	 */
 	private HashMap<String, Boolean>[] lookUpTable;
@@ -36,7 +36,7 @@ class ProcessingData
 	
 	/**
 	 * Copies all strings from position "from" to position "where". Each "new"
-	 * string is concatenated with the given prostfix.
+	 * string is concatenated with the given postfix.
 	 */
 	protected void add (int where, int from, String postfix, boolean fuzzy)
 	{
@@ -56,7 +56,7 @@ class ProcessingData
 				// If we can transliterate without fuzzy rules, that is better.
 				if (lookUpTable[where].containsKey(k))
 					lookUpTable[where].put(k, lookUpTable[where].get(k) && fuzzy);
-				// If previos transliteration was "unfuzzy", but last step is
+				// If previous transliteration was "unfuzzy", but last step is
 				// fuzzy, altogether we get an fuzzy transliteration.
 				else lookUpTable[where].put(k, var.getValue() || fuzzy);
 			}

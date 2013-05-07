@@ -39,12 +39,12 @@ public class ResultData
 	public ResultDataWithDic DICT_FUZZY_GUESS;
 	
 	/**
-	 * Untrasted results - transliterated forms that could not be found in
+	 * Untrusted results - transliterated forms that could not be found in
 	 * dictionary.
 	 */
 	public HashSet<Variant> NO_DICT_EXACT;
 	/**
-	 * Extremely untrasted results - fuzzy-transliterated forms that could not
+	 * Extremely untrusted results - fuzzy-transliterated forms that could not
 	 * be found in dictionary.
 	 */
 	public HashSet<Variant> NO_DICT_FUZZY;
@@ -415,7 +415,7 @@ public class ResultData
 		 * Converts arbitrary hash map representing dictionary information from
 		 * <code>*.conf</code> file to string. For debugging purposes.
 		 * Key value <code>entryURL</code> is treated as URL template - lemma
-		 * provided as parameter to this function is concatinated to the value.
+		 * provided as parameter to this function is concatenated to the value.
 		 */
 		private static <K> CharSequence dictToString(
 			Map<K, ?> m, String indent, String lemma)

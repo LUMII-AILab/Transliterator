@@ -14,7 +14,7 @@ public class Variant
 	 */
 	public final String token;
 	/**
-	 * Logorithmic N-gram estimate.
+	 * Logarithmic N-gram estimate.
 	 */
 	private Double estimate;
 	/**
@@ -38,7 +38,7 @@ public class Variant
 	}
 	
 	/**
-	 * Estimate token: return previosuly calculated estimate if such exists, use
+	 * Estimate token: return previously calculated estimate if such exists, use
 	 * provided estimator otherwise. 
 	 */
 	public Double estimate(VariantEvaluator ev)
@@ -57,8 +57,8 @@ public class Variant
 	}
 	
 	/**
-	 * Equalence is determined by comparing tokens. Propabilities are not taken
-	 * into account.
+	 * Equivalence is determined by comparing tokens. Probabilities are not
+	 * taken into account.
 	 */
 	@Override
 	public boolean equals(Object o)

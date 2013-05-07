@@ -14,7 +14,7 @@ public class VariantEvaluator
 	public int maxNGramLevel;
 	
 	/**
-	 * Tag denoting begining of the word.
+	 * Tag denoting beginning of the word.
 	 */
 	private static String BEGIN_TAG;
 	/**
@@ -36,13 +36,13 @@ public class VariantEvaluator
 	 */
 	private HashMap<String, Double> nGramProb;
 	/**
-	 * N-1-gram probabilities for backpropogation.
+	 * N-1-gram probabilities for back-propagation.
 	 */
 	private HashMap<String, Double> backpropProb;
 	
 	/**
 	 * Constructor.
-	 * @param beginTag	Tag denoting begining of the word in the N-gram file.
+	 * @param beginTag	Tag denoting beginning of the word in the N-gram file.
 	 *					<code>&lt;s></code> is used, if <code>null</code> or
 	 *					empty string provided.
 	 * @param endTag	Tag denoting end of the word in the N-gram file.
@@ -53,7 +53,7 @@ public class VariantEvaluator
 	 *						<code>null</code> or empty string provided.
 	 * @param vocabFile	Path to vocabulary file - one character per line. If
 	 *					length of line is more than 1, and line is not equal to
-	 *					special values pased in variables (beginTag, endTag
+	 *					special values passed in variables (beginTag, endTag
 	 *					unknownTag), error will rise. Space characters are not
 	 *					supported.
 	 * @param nGramFile	Path to N-gram statistics file. Statistics must be log.
@@ -73,7 +73,7 @@ public class VariantEvaluator
 			unknownTag : "<unk>";
 		maxNGramLevel = level;
 		
-		// Init data structures.
+		// Initialize data structures.
 		vocab = new HashSet<String>();
 		nGramProb = new HashMap<String, Double>();
 		backpropProb = new HashMap<String, Double>();
@@ -148,7 +148,7 @@ public class VariantEvaluator
 		//Calculate evaluation.
 		double rez = 0;		//nGramProb.get(charList.get(0));
 		
-		// There is no need to add probobility for beginning of the word.
+		// There is no need to add probability for beginning of the word.
 		for (int pos = 1; pos < charList.size(); pos++)
 		{
 			int lev = pos + 1 < maxNGramLevel ? pos + 1 : maxNGramLevel;
@@ -188,7 +188,7 @@ public class VariantEvaluator
 			throw new IllegalArgumentException(level + "-grams can't be used");
 			
 		String nGram = substrings.get(level - 2)[position - level + 1];
-		//System.out.println("querry: " + nGram);
+		//System.out.println("query: " + nGram);
 		if (nGramProb.containsKey(nGram)) return nGramProb.get(nGram);
 		else
 		{
