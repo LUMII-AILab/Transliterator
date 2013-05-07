@@ -72,7 +72,7 @@ public class Engine
 					String capitRepl = capitalize(repl.first, suffix);
 					
 					// Update memorization table.
-					if (isAllowed(repl.first, repl.second, pos, len))
+					if (isAllowed(repl.second, pos, suffixLC.length(), len))
 					{
 						lookUpTable.add(
 							pos, pos - suffixLC.length(), capitRepl, false);
@@ -86,7 +86,7 @@ public class Engine
 					Tuple<String, Rules.Pos> repl = rules.exact.get(suffix);
 
 					// Update memorization table.
-					if (isAllowed(repl.first, repl.second, pos, len))
+					if (isAllowed(repl.second, pos, suffix.length(), len))
 					{
 						lookUpTable.add(
 							pos, pos - suffix.length(), repl.first, false);
@@ -104,7 +104,7 @@ public class Engine
 						String capitRepl = capitalize(repl.first, suffix);
 						
 						// Update memorization table.
-						if (isAllowed(repl.first, repl.second, pos, len))
+						if (isAllowed(repl.second, pos, suffixLC.length(), len))
 							lookUpTable.add(
 								pos, pos - suffixLC.length(), capitRepl, true);
 					}
@@ -116,7 +116,7 @@ public class Engine
 					for (Tuple<String, Rules.Pos> repl : rules.fuzzySense.get(suffix))
 					{
 						// Update memorization table.
-						if (isAllowed(repl.first, repl.second, pos, len))
+						if (isAllowed(repl.second, pos, suffix.length(), len))
 							lookUpTable.add(
 								pos, pos - suffix.length(), repl.first, true);
 					}
@@ -133,22 +133,26 @@ public class Engine
 	
 	/**
 	 * Is this replacement allowed in this position of source string?
+	 * @param restriction		BEGIN/END/EXACT/ALL
+	 * @param sourcePos			current position in source string
+	 * @param targetLength		length of string fragment to be replaced
+	 * @param sourceTotalLangth	total length of source string
 	 */
 	private static boolean isAllowed(
-		String replace, Rules.Pos restriction, int sourcePos, int sourceLength)
+		Rules.Pos restriction, int sourcePos, int targetLength, int sourceTotalLength)
 	{
 		boolean res = true;
 		switch (restriction)
 		{
 			case BEGIN:
-				if (sourcePos != replace.length() - 1) res = false;
+				if (sourcePos != targetLength - 1) res = false;
 				break;					
 			case END:
-				if (sourcePos != sourceLength - 1) res = false;
+				if (sourcePos != sourceTotalLength - 1) res = false;
 				break;
 			case EXACT:
-				if (sourcePos != replace.length() - 1 
-					|| sourcePos != sourceLength - 1)
+				if (sourcePos != targetLength - 1 
+					|| sourcePos != sourceTotalLength - 1)
 					res = false;
 		}
 		return res;
