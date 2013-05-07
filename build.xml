@@ -44,9 +44,12 @@
   	</copy>
   	<copy file="${morphology.dir}/dist/Statistics.xml" todir="${dist}/morpho"/>
   	<copy file="${morphology.dir}/dist/TagSet.xml" todir="${dist}/morpho"/>
-  	<copy file="${morphology.dir}/dist/TagSet.xml" todir="${dist}"/>
   	<copy file="path.conf" todir="${dist}"/>
   	<copy file="run.bat" todir="${dist}"/>
+   	<copy todir="${dist}/testdata">
+  		<fileset dir="testdata"/>
+  	</copy>	
+  	<copy file="test.bat" todir="${dist}"/>
 	
 	<javadoc destdir="${dist}/javadoc/" sourcepath="src" package="lv.*" />
   </target>
