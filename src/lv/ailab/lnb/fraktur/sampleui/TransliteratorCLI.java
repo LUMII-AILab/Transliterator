@@ -1,3 +1,4 @@
+package lv.ailab.lnb.fraktur.sampleui;
 
 import lv.ailab.lnb.fraktur.Transliterator;
 import lv.ailab.lnb.fraktur.translit.ResultData;
