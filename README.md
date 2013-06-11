@@ -3,9 +3,9 @@ Transiterator
 
 LNB Transliterator, version 2
 
-Basicaly intended for including as library. For testing and experimenting primitive CLI is provided. To run it, compile project with Ant build.xml and run "dist/run.bat" (on Windows) or lv.ailab.lnb.fraktur.sampleui.TransliteratorCLI.main() from the directory where path.conf file is. Bigger tests for exploring possibilities of given rule sets will available in "dist/testdata" and can be launched by "dist/run.bat". These tests my require several minutes to complite and 1-2GB RAM.
+Basicaly intended for including as library. For testing and experimenting primitive CLI is provided. To run it, compile project with Ant <code>build.xml<c/ode> and run <code>dist/run.bat<code> (on Windows) or <code>lv.ailab.lnb.fraktur.sampleui.TransliteratorCLI.main()</code> from the directory where <code>path.conf</code> file is. Bigger tests for exploring possibilities of given rule sets will available in <code>dist/testdata</code> and can be launched by <code>dist/run.bat</code>. These tests my require several minutes to complite and 1-2GB RAM.
 
-Build.xml assumes that https://github.com/PeterisP/morphology is in the directory right next to Transliterator.
+<code>Build.xml<code> assumes that https://github.com/PeterisP/morphology is in the directory right next to Transliterator.
 
 References
 ----------
